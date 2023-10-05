@@ -6,9 +6,9 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 const users = [
-  { id: 1, name: "John Doe" },
-  { id: 2, name: "Jane Smith" },
-  { id: 3, name: "Alice Johnson" },
+  { id: 1, name: "Adrian" },
+  { id: 2, name: "Egor" },
+  { id: 3, name: "Bogdan" },
 ];
 
 const swaggerDocument = YAML.load("./openapi.yaml");
