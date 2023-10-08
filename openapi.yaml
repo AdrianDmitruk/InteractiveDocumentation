@@ -1,37 +1,78 @@
 openapi: 3.0.0
 info:
-  title: API
+  title: Каталог книг API
   version: 1.0.0
 paths:
-  /users:
+  /books:
     get:
-      summary: Получить список пользователей
+      summary: Получить список всех книг
       responses:
         "200":
-          description: Успешный ответ
-  /users/{id}:
+          description: Список книг
+    post:
+      summary: Добавить новую книгу
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                author:
+                  type: string
+      responses:
+        "201":
+          description: Книга успешно добавлена
+  /books/{id}:
     get:
-      summary: Получить информацию о пользователе по ID
+      summary: Получить книгу по ID
       parameters:
-        - name: id
-          in: path
+        - in: path
+          name: id
           required: true
-          description: ID пользователя
           schema:
             type: integer
       responses:
         "200":
-          description: Успешный ответ
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: integer
-                    example: 1
-                  name:
-                    type: string
-                    example: John Doe
+          description: Книга
         "404":
-          description: Пользователь не найден
+          description: Книга не найдена
+    put:
+      summary: Обновить книгу по ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                author:
+                  type: string
+      responses:
+        "200":
+          description: Книга успешно обновлена
+        "404":
+          description: Книга не найдена
+    delete:
+      summary: Удалить книгу по ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Книга успешно удалена
+        "404":
+          description: Книга не найдена
